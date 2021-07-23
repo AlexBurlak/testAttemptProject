@@ -32,9 +32,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\TestAttemptProject\\TestAttempProject\\TestAttempProject\\TestAttempProject.csproj",
-      "projectName": "TestAttempProject",
-      "projectPath": "D:\\Projects\\TestAttemptProject\\TestAttempProject\\TestAttempProject\\TestAttempProject.csproj",
+      "projectUniqueName": "D:\\Projects\\TestAttemptProject\\TestAttempProject\\TestAttempProject\\TestAttemptProject.csproj",
+      "projectName": "TestAttemptProject",
+      "projectPath": "D:\\Projects\\TestAttemptProject\\TestAttempProject\\TestAttempProject\\TestAttemptProject.csproj",
       "packagesPath": "C:\\Users\\DikVernon\\.nuget\\packages\\",
       "outputPath": "D:\\Projects\\TestAttemptProject\\TestAttempProject\\TestAttempProject\\obj\\",
       "projectStyle": "PackageReference",
