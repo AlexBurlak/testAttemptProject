@@ -8,7 +8,7 @@ using TestAttemptProject.Domain.DTO;
 
 namespace TestAttemptProject.BLL.Interfaces
 {
-    internal interface IMessageService
+    public interface IMessageService
     {
         public void AddMessageToDb(MessageCreateDTO message);
         public Task<Message> GetMessageAsync(int id);
