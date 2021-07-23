@@ -34,23 +34,26 @@ namespace TestAttemptProject.Controllers
 
         // POST api/<MessageController>
         [HttpPost]
-        public ActionResult Post([FromBody] MessageCreateDTO messageDTO)
+        public async Task<ActionResult> Post([FromBody] MessageCreateDTO messageDTO)
         {
-            _messageService.AddMessageToDb(messageDTO);
+            await _messageService.AddMessageToDbAsync(messageDTO);
             return Created(nameof(GetAsync), messageDTO);
         }
 
         // PUT api/<MessageController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] MessageUpdateDTO messageDTO)
+        public async Task<ActionResult> Put(int id, [FromBody] MessageUpdateDTO messageDTO)
         {
-            _messageService.UpdateMessage(messageDTO);
+            await _messageService.UpdateMessageAsync(id, messageDTO);
+            return Ok();
         }
 
         // DELETE api/<MessageController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
+            await _messageService.DeleteMessageAsync(id);
+            return NoContent();
         }
     }
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "G9W8o6BeYSOLFXVRdpICHwDx+4Infc3z5tcSupP3S0P98QRf1sr9eB1z6dPxtSVVosaSxLxVGtYAcOuIXlsJZQ==",
+  "dgSpecHash": "gaG/rfs7Aegas7ViWCe3txCQqQIIoF2xIaDrDFP6JJiDYVDn1eXw7cTVG4i9Bp1/hEZkMcgsVRmvaG+qQ6n6eQ==",
   "success": true,
   "projectFilePath": "D:\\Projects\\TestAttemptProject\\TestAttempProject\\TestAttempProject.BLL\\TestAttemptProject.BLL.csproj",
   "expectedPackageFiles": [
@@ -126,5 +126,12 @@
     "C:\\Users\\DikVernon\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Users\\DikVernon\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file D:\\Projects\\TestAttemptProject\\TestAttempProject\\TestAttempProject.BLL\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

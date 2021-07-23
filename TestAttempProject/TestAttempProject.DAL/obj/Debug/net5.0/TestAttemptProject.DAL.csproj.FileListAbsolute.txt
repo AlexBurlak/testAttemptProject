@@ -13,3 +13,6 @@ D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.DAL\obj\Debug
 D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.DAL\obj\Debug\net5.0\TestAttemptProject.DAL.dll
 D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.DAL\obj\Debug\net5.0\ref\TestAttemptProject.DAL.dll
 D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.DAL\obj\Debug\net5.0\TestAttemptProject.DAL.pdb
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.DAL\bin\Debug\net5.0\TestAttemptProject.DAL.runtimeconfig.json
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.DAL\bin\Debug\net5.0\TestAttemptProject.DAL.runtimeconfig.dev.json
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.DAL\obj\Debug\net5.0\TestAttemptProject.DAL.genruntimeconfig.cache

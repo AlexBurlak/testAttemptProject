@@ -8,6 +8,7 @@ using TestAttemptProject.BLL.Interfaces;
 using TestAttemptProject.Domain.DTO;
 using TestAttemptProject.Domain.Entities;
 using TestAttemptProject.DAL.Interfaces;
+using TestAttemptProject.Domain.Exceptions;
 
 namespace TestAttemptProject.BLL.Services
 {
@@ -21,10 +22,12 @@ namespace TestAttemptProject.BLL.Services
             _mapper = mapper;
             _messageRepository = messageRepository;
         }
-        public void AddMessageToDb(MessageCreateDTO messageDTO)
+        public async Task AddMessageToDbAsync(MessageCreateDTO messageDTO)
         {
             Message message = _mapper.Map<Message>(messageDTO);
-            _messageRepository.AddAsync(message);
+            message.DataStamp = DateTime.Now;
+            await _messageRepository.AddAsync(message);
+            await _messageRepository.SaveAsync();
         }
 
         public IEnumerable<Message> GetAllMessages()
@@ -37,14 +40,17 @@ namespace TestAttemptProject.BLL.Services
             return await _messageRepository.GetAsync(id);
         }
 
-        public void UpdateMessage(MessageUpdateDTO messageDTO)
+        public async Task UpdateMessageAsync(int id, MessageUpdateDTO messageDTO)
         {
             Message message = _mapper.Map<Message>(messageDTO);
+            message.Id = id;
             _messageRepository.Update(message);
+            await _messageRepository.SaveAsync();
         }
-        public void DeleteMessage(int id)
+        public async Task DeleteMessageAsync(int id)
         {
             _messageRepository.Delete(id);
+            await _messageRepository.SaveAsync();
         }
     }
 }

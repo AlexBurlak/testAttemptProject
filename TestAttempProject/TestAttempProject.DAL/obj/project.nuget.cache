@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Q8Wlko7uVu2I5iascLRO0VlXjX6xvQZI3XzASX70k1Q9y0Hzw5HYazb4i2e/vQZaDEBw6tpGt+oO6p6rR5Zs1w==",
+  "dgSpecHash": "OyCDIADoANJM/rIaK/kKvYDFLvecYoGcL9v7kFUzDM4ggghtvtL/9xuUfRA/ycvv36xT+ohyd+4wup5B0nLCKg==",
   "success": true,
   "projectFilePath": "D:\\Projects\\TestAttemptProject\\TestAttempProject\\TestAttempProject.DAL\\TestAttemptProject.DAL.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\DikVernon\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\DikVernon\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\DikVernon\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\DikVernon\\.nuget\\packages\\microsoft.aspnetcore.authentication.cookies\\2.2.0\\microsoft.aspnetcore.authentication.cookies.2.2.0.nupkg.sha512",
@@ -20,12 +21,13 @@
     "C:\\Users\\DikVernon\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.2.0\\microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
     "C:\\Users\\DikVernon\\.nuget\\packages\\microsoft.aspnetcore.identity\\2.2.0\\microsoft.aspnetcore.identity.2.2.0.nupkg.sha512",
     "C:\\Users\\DikVernon\\.nuget\\packages\\microsoft.aspnetcore.webutilities\\2.2.0\\microsoft.aspnetcore.webutilities.2.2.0.nupkg.sha512",
-    "C:\\Users\\DikVernon\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\DikVernon\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\DikVernon\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",
     "C:\\Users\\DikVernon\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.0.1\\microsoft.data.sqlclient.sni.runtime.2.0.1.nupkg.sha512",
     "C:\\Users\\DikVernon\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.8\\microsoft.entityframeworkcore.5.0.8.nupkg.sha512",
     "C:\\Users\\DikVernon\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.8\\microsoft.entityframeworkcore.abstractions.5.0.8.nupkg.sha512",
     "C:\\Users\\DikVernon\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\5.0.8\\microsoft.entityframeworkcore.analyzers.5.0.8.nupkg.sha512",
+    "C:\\Users\\DikVernon\\.nuget\\packages\\microsoft.entityframeworkcore.design\\5.0.8\\microsoft.entityframeworkcore.design.5.0.8.nupkg.sha512",
     "C:\\Users\\DikVernon\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\5.0.8\\microsoft.entityframeworkcore.relational.5.0.8.nupkg.sha512",
     "C:\\Users\\DikVernon\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\5.0.8\\microsoft.entityframeworkcore.sqlserver.5.0.8.nupkg.sha512",
     "C:\\Users\\DikVernon\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\5.0.0\\microsoft.extensions.caching.abstractions.5.0.0.nupkg.sha512",
@@ -125,5 +127,12 @@
     "C:\\Users\\DikVernon\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Users\\DikVernon\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file D:\\Projects\\TestAttemptProject\\TestAttempProject\\TestAttempProject.DAL\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "NmW56j0E8YxKAp4hp/e78xatmlOOaqf7hL2YaJqCdocOtDwf26CrHAmmHTs97LHBT7VVAfG9KxuRip8z3qRH1w==",
+  "dgSpecHash": "YyGFghQRamfZ1Vunl5dkLnQfZgXYtOSsl5KEBtxB6U5MQ19UtlI3X3rRAb4k/lu21iVuLzSwCRGRcMtH4AVTwA==",
   "success": true,
   "projectFilePath": "D:\\Projects\\TestAttemptProject\\TestAttempProject\\TestAttempProject\\TestAttemptProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DikVernon\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
+    "C:\\Users\\DikVernon\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\DikVernon\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\DikVernon\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\DikVernon\\.nuget\\packages\\microsoft.aspnetcore.authentication.cookies\\2.2.0\\microsoft.aspnetcore.authentication.cookies.2.2.0.nupkg.sha512",
@@ -27,6 +28,7 @@
     "C:\\Users\\DikVernon\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.8\\microsoft.entityframeworkcore.5.0.8.nupkg.sha512",
     "C:\\Users\\DikVernon\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.8\\microsoft.entityframeworkcore.abstractions.5.0.8.nupkg.sha512",
     "C:\\Users\\DikVernon\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\5.0.8\\microsoft.entityframeworkcore.analyzers.5.0.8.nupkg.sha512",
+    "C:\\Users\\DikVernon\\.nuget\\packages\\microsoft.entityframeworkcore.design\\5.0.8\\microsoft.entityframeworkcore.design.5.0.8.nupkg.sha512",
     "C:\\Users\\DikVernon\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\5.0.8\\microsoft.entityframeworkcore.relational.5.0.8.nupkg.sha512",
     "C:\\Users\\DikVernon\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\5.0.8\\microsoft.entityframeworkcore.sqlserver.5.0.8.nupkg.sha512",
     "C:\\Users\\DikVernon\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",

@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
-namespace TestAttemptProject.Domain.DTO
+namespace TestAttemptProject.Domain.Entities
 {
-    public class MessageUpdateDTO
+    public class User: IdentityUser
     {
-        public string Content { get; set; }
+
     }
 }

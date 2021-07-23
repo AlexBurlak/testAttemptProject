@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,8 @@ namespace TestAttemptProject
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<TestAttemptDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("LocalDb")));
+                options.UseSqlServer(Configuration.GetConnectionString("LocalDb"),
+                x => x.MigrationsAssembly("TestAttemptProject")));
             services.AddMyServices();
             services.AddControllers();
 
