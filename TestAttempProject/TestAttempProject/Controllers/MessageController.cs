@@ -20,29 +20,31 @@ namespace TestAttemptProject.Controllers
         }
         // GET: api/<MessageController>
         [HttpGet]
-        public  IEnumerable<Message> GetAll()
+        public  ActionResult<IEnumerable<Message>> GetAll()
         {
-            return  _messageService.GetAllMessages();
+            return  Ok(_messageService.GetAllMessages());
         }
 
         // GET api/<MessageController>/5
         [HttpGet("{id}")]
-        public async Task<Message> GetAsync(int id)
+        public async Task<ActionResult<Message>> GetAsync(int id)
         {
-            return await _messageService.GetMessageAsync(id);
+            return Ok(await _messageService.GetMessageAsync(id));
         }
 
         // POST api/<MessageController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult Post([FromBody] MessageCreateDTO messageDTO)
         {
-
+            _messageService.AddMessageToDb(messageDTO);
+            return Created(nameof(GetAsync), messageDTO);
         }
 
         // PUT api/<MessageController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] MessageUpdateDTO messageDTO)
         {
+            _messageService.UpdateMessage(messageDTO);
         }
 
         // DELETE api/<MessageController>/5
