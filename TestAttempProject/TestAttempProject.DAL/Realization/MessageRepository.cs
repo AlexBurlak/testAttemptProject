@@ -45,6 +45,10 @@ namespace TestAttemptProject.DAL.Realization
 
         public void Update(Message item)
         {
+            Message oldMessage = _context.Messages.Find(item);
+            if(oldMessage == null) { throw new BaseException(); }
+            item.AuthorId = oldMessage.AuthorId;
+            item.DataStamp = oldMessage.DataStamp;
             _context.Entry(item).State = EntityState.Modified;
         }
 

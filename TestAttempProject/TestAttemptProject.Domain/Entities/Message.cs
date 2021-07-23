@@ -11,6 +11,6 @@ namespace TestAttemptProject.Domain.Entities
         public int Id { get; set; }
         public int AuthorId { get; set; }
         public string Content { get; set; }
-        public DateTime dataStamp { get; set; }
+        public DateTime DataStamp { get; set; }
     }
 }
