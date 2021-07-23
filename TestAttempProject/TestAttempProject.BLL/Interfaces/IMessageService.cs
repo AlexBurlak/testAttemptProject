@@ -10,7 +10,7 @@ namespace TestAttemptProject.BLL.Interfaces
 {
     public interface IMessageService
     {
-        public void AddMessageToDb(MessageCreateDTO message);
+        public Task AddMessageToDbAsync(MessageCreateDTO message);
         public Task<Message> GetMessageAsync(int id);
         public IEnumerable<Message> GetAllMessages();
         public void UpdateMessage(MessageUpdateDTO message);

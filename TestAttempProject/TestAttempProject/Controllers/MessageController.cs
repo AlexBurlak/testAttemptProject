@@ -34,9 +34,9 @@ namespace TestAttemptProject.Controllers
 
         // POST api/<MessageController>
         [HttpPost]
-        public ActionResult Post([FromBody] MessageCreateDTO messageDTO)
+        public async Task<ActionResult> Post([FromBody] MessageCreateDTO messageDTO)
         {
-            _messageService.AddMessageToDb(messageDTO);
+            await _messageService.AddMessageToDbAsync(messageDTO);
             return Created(nameof(GetAsync), messageDTO);
         }
 

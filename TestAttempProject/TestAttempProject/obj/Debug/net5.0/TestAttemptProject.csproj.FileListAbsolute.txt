@@ -64,3 +64,5 @@ D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject\obj\Debug\net
 D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject\obj\Debug\net5.0\ref\TestAttemptProject.dll
 D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject\obj\Debug\net5.0\TestAttemptProject.pdb
 D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject\obj\Debug\net5.0\TestAttemptProject.genruntimeconfig.cache
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject\bin\Debug\net5.0\Humanizer.dll
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll

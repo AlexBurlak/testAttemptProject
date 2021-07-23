@@ -21,10 +21,11 @@ namespace TestAttemptProject.BLL.Services
             _mapper = mapper;
             _messageRepository = messageRepository;
         }
-        public void AddMessageToDb(MessageCreateDTO messageDTO)
+        public async Task AddMessageToDbAsync(MessageCreateDTO messageDTO)
         {
             Message message = _mapper.Map<Message>(messageDTO);
-            _messageRepository.AddAsync(message);
+            await _messageRepository.AddAsync(message);
+            await _messageRepository.SaveAsync();
         }
 
         public IEnumerable<Message> GetAllMessages()
@@ -41,10 +42,12 @@ namespace TestAttemptProject.BLL.Services
         {
             Message message = _mapper.Map<Message>(messageDTO);
             _messageRepository.Update(message);
+            _messageRepository.SaveAsync();
         }
         public void DeleteMessage(int id)
         {
             _messageRepository.Delete(id);
+            _messageRepository.SaveAsync();
         }
     }
 }
