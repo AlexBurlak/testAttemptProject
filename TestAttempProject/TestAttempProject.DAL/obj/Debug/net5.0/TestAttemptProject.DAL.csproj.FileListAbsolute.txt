@@ -3,3 +3,13 @@ D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.DAL\obj\Debug
 D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.DAL\obj\Debug\net5.0\TestAttemptProject.DAL.AssemblyInfoInputs.cache
 D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.DAL\obj\Debug\net5.0\TestAttemptProject.DAL.AssemblyInfo.cs
 D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.DAL\obj\Debug\net5.0\TestAttemptProject.DAL.csproj.CoreCompileInputs.cache
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.DAL\bin\Debug\net5.0\TestAttemptProject.DAL.deps.json
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.DAL\bin\Debug\net5.0\TestAttemptProject.DAL.dll
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.DAL\bin\Debug\net5.0\ref\TestAttemptProject.DAL.dll
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.DAL\bin\Debug\net5.0\TestAttemptProject.DAL.pdb
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.DAL\bin\Debug\net5.0\TestAttemptProject.Domain.dll
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.DAL\bin\Debug\net5.0\TestAttemptProject.Domain.pdb
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.DAL\obj\Debug\net5.0\TestAttemptProject.DAL.csproj.CopyComplete
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.DAL\obj\Debug\net5.0\TestAttemptProject.DAL.dll
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.DAL\obj\Debug\net5.0\ref\TestAttemptProject.DAL.dll
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.DAL\obj\Debug\net5.0\TestAttemptProject.DAL.pdb
