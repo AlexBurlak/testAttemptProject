@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNetCore.Identity;
 
 namespace TestAttemptProject.Domain.Entities
 {
-    public class User: IdentityUser
+    public static class UserRoles
     {
-
+        public const string Admin = "Admin";
+        public const string User = "User";
     }
 }
