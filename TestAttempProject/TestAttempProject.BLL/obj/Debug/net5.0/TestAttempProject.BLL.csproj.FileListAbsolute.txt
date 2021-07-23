@@ -1,0 +1,11 @@
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.BLL\bin\Debug\net5.0\TestAttempProject.BLL.deps.json
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.BLL\bin\Debug\net5.0\TestAttempProject.BLL.dll
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.BLL\bin\Debug\net5.0\ref\TestAttempProject.BLL.dll
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.BLL\bin\Debug\net5.0\TestAttempProject.BLL.pdb
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.BLL\obj\Debug\net5.0\TestAttempProject.BLL.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.BLL\obj\Debug\net5.0\TestAttempProject.BLL.AssemblyInfoInputs.cache
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.BLL\obj\Debug\net5.0\TestAttempProject.BLL.AssemblyInfo.cs
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.BLL\obj\Debug\net5.0\TestAttempProject.BLL.csproj.CoreCompileInputs.cache
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.BLL\obj\Debug\net5.0\TestAttempProject.BLL.dll
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.BLL\obj\Debug\net5.0\ref\TestAttempProject.BLL.dll
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.BLL\obj\Debug\net5.0\TestAttempProject.BLL.pdb

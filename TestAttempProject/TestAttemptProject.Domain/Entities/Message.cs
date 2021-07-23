@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TestAttemptProject.Domain.Entities
 {
-    class Message
+    public class Message
     {
         public int Id { get; set; }
         public int AuthorId { get; set; }

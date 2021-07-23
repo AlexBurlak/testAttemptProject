@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "TestAttempProject.BLL/1.0.0": {
+        "runtime": {
+          "TestAttempProject.BLL.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "TestAttempProject.BLL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

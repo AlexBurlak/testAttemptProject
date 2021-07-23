@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net5.0": {}
+    "net5.0": {
+      "TestAttemptProject.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/TestAttemptProject.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TestAttemptProject.Domain.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "TestAttemptProject.Domain/1.0.0": {
+      "type": "project",
+      "path": "../TestAttemptProject.Domain/TestAttemptProject.Domain.csproj",
+      "msbuildProject": "../TestAttemptProject.Domain/TestAttemptProject.Domain.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net5.0": []
+    "net5.0": [
+      "TestAttemptProject.Domain >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\DikVernon\\.nuget\\packages\\": {}
@@ -33,7 +52,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Projects\\TestAttemptProject\\TestAttempProject\\TestAttemptProject.Domain\\TestAttemptProject.Domain.csproj": {
+              "projectPath": "D:\\Projects\\TestAttemptProject\\TestAttempProject\\TestAttemptProject.Domain\\TestAttemptProject.Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

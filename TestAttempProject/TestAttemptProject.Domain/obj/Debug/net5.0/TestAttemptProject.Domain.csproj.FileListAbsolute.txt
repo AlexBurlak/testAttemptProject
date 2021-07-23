@@ -1,0 +1,12 @@
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttemptProject.Domain\bin\Debug\net5.0\TestAttemptProject.Domain.deps.json
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttemptProject.Domain\bin\Debug\net5.0\TestAttemptProject.Domain.dll
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttemptProject.Domain\bin\Debug\net5.0\ref\TestAttemptProject.Domain.dll
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttemptProject.Domain\bin\Debug\net5.0\TestAttemptProject.Domain.pdb
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttemptProject.Domain\obj\Debug\net5.0\TestAttemptProject.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttemptProject.Domain\obj\Debug\net5.0\TestAttemptProject.Domain.AssemblyInfoInputs.cache
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttemptProject.Domain\obj\Debug\net5.0\TestAttemptProject.Domain.AssemblyInfo.cs
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttemptProject.Domain\obj\Debug\net5.0\TestAttemptProject.Domain.csproj.CoreCompileInputs.cache
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttemptProject.Domain\obj\Debug\net5.0\TestAttemptProject.Domain.dll
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttemptProject.Domain\obj\Debug\net5.0\ref\TestAttemptProject.Domain.dll
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttemptProject.Domain\obj\Debug\net5.0\TestAttemptProject.Domain.pdb
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttemptProject.Domain\obj\Debug\net5.0\TestAttemptProject.Domain.csproj.AssemblyReference.cache

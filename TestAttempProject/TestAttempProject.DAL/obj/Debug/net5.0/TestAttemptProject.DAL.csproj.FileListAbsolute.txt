@@ -1,0 +1,5 @@
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.DAL\obj\Debug\net5.0\TestAttemptProject.DAL.csproj.AssemblyReference.cache
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.DAL\obj\Debug\net5.0\TestAttemptProject.DAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.DAL\obj\Debug\net5.0\TestAttemptProject.DAL.AssemblyInfoInputs.cache
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.DAL\obj\Debug\net5.0\TestAttemptProject.DAL.AssemblyInfo.cs
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject.DAL\obj\Debug\net5.0\TestAttemptProject.DAL.csproj.CoreCompileInputs.cache

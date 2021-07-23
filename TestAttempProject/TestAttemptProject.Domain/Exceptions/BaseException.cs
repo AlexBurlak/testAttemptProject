@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TestAttemptProject.Domain.Exceptions
 {
-    class BaseException : Exception
+    public class BaseException : Exception
     {
         public BaseException()
             :base()
