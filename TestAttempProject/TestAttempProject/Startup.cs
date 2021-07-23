@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using TestAttemptProject.DAL.Context;
 using Microsoft.Extensions.Configuration;
 using Swashbuckle.AspNetCore;
+using TestAttemptProject.Extensions;
 
 namespace TestAttemptProject
 {
@@ -27,6 +28,7 @@ namespace TestAttemptProject
         {
             services.AddDbContext<TestAttemptDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("LocalDb")));
+            services.AddMyServices();
             services.AddControllers();
 
             services.AddSwaggerGen();

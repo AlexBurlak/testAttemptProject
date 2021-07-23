@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TestAttemptProject.DAL.Realization
 {
-    class MessageRepository : IMessageRepository
+    public class MessageRepository : IMessageRepository
     {
         private readonly TestAttemptDbContext _context;
         public MessageRepository(TestAttemptDbContext context)
