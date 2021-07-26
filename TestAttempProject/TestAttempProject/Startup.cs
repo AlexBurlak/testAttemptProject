@@ -1,10 +1,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +17,8 @@ using TestAttemptProject.DAL.Context;
 using Microsoft.Extensions.Configuration;
 using Swashbuckle.AspNetCore;
 using TestAttemptProject.Extensions;
+using TestAttemptProject.Common.Entities;
+using System.Text;
 
 namespace TestAttemptProject
 {
@@ -27,9 +33,30 @@ namespace TestAttemptProject
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<TestAttemptDbContext>(options =>
+            services.AddDbContext<UserDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("LocalDb"),
-                x => x.MigrationsAssembly("TestAttemptProject")));
+                b => b.MigrationsAssembly("TestAttemptProject")));
+            services.AddIdentity<User, IdentityRole>(options =>
+                {
+                    options.SignIn.RequireConfirmedAccount = false;
+                    
+                    
+                    options.Password.RequireDigit = false;
+                    options.Password.RequiredLength = 6;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                })
+                .AddEntityFrameworkStores<UserDbContext>()
+                .AddDefaultTokenProviders();
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(120);
+                options.LoginPath = "/api/Authenticate/login";
+                options.SlidingExpiration = true;
+            });
+            
             services.AddMyServices();
             services.AddControllers();
 
@@ -52,6 +79,7 @@ namespace TestAttemptProject
             app.UseHttpsRedirection();
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

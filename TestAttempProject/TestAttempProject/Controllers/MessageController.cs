@@ -4,56 +4,88 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TestAttemptProject.BLL.Interfaces;
-using TestAttemptProject.Domain.Entities;
-using TestAttemptProject.Domain.DTO;
+using TestAttemptProject.Common.Entities;
+using TestAttemptProject.Common.DTO;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 namespace TestAttemptProject.Controllers
 {
+    
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class MessageController : ControllerBase
     {
         private readonly IMessageService _messageService;
-        public MessageController(IMessageService messageService)
+        private readonly UserManager<User> _userManager;
+        public MessageController(IMessageService messageService,
+            UserManager<User> userManager)
         {
             _messageService = messageService;
+            _userManager = userManager;
         }
-        // GET: api/<MessageController>
+        
         [HttpGet]
-        public  ActionResult<IEnumerable<Message>> GetAll()
+        public  async Task<ActionResult<IEnumerable<Message>>> GetAll()
         {
-            return  Ok(_messageService.GetAllMessages());
+            IEnumerable<Message> messagesCollection = _messageService.GetAllMessages();
+            User user = await _userManager.FindByNameAsync(User.Identity.Name);
+            bool isAdmin = await _userManager.IsInRoleAsync(user, UserRoles.Admin);
+            if(!isAdmin)
+            {
+                messagesCollection = messagesCollection.Where(m => m.Author == user);
+            }
+            return  Ok(messagesCollection);
         }
 
-        // GET api/<MessageController>/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Message>> GetAsync(int id)
         {
-            return Ok(await _messageService.GetMessageAsync(id));
+            var message = await _messageService.GetMessageAsync(id);
+            User user = await _userManager.FindByNameAsync(User.Identity.Name);
+            bool isAdmin = await _userManager.IsInRoleAsync(user, UserRoles.Admin);
+            if(!isAdmin && message.Author != user)
+            {
+                return Forbid();
+            }
+            return Ok(message);
         }
 
-        // POST api/<MessageController>
+        
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] MessageCreateDTO messageDTO)
         {
-            await _messageService.AddMessageToDbAsync(messageDTO);
+            await _messageService.AddMessageToDbAsync(messageDTO, await _userManager.FindByNameAsync(User.Identity.Name));
             return Created(nameof(GetAsync), messageDTO);
         }
 
-        // PUT api/<MessageController>/5
         [HttpPut("{id}")]
         public async Task<ActionResult> Put(int id, [FromBody] MessageUpdateDTO messageDTO)
         {
+            if ((await _messageService.GetMessageAsync(id)).Author !=
+                (await _userManager.FindByNameAsync(User.Identity.Name)))
+            {
+                return Forbid();
+            }
             await _messageService.UpdateMessageAsync(id, messageDTO);
             return Ok();
         }
 
-        // DELETE api/<MessageController>/5
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
+            var message = await _messageService.GetMessageAsync(id);
+            User user = await _userManager.FindByNameAsync(User.Identity.Name);
+            bool isAdmin = await _userManager.IsInRoleAsync(user, UserRoles.Admin);
+            if(!isAdmin && message.Author != user)
+            {
+                return Forbid();
+            }
             await _messageService.DeleteMessageAsync(id);
             return NoContent();
         }
+        
     }
 }

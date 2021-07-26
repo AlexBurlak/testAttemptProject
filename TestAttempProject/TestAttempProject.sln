@@ -10,13 +10,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestAttemptProject", "TestA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeastAttemptProject.Tests", "TeastAttemptProject.Tests\TeastAttemptProject.Tests.csproj", "{71169F51-F3D1-4919-A858-B50656438CA4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestAttemptProject.Domain", "TestAttemptProject.Domain\TestAttemptProject.Domain.csproj", "{BE1F6B28-46FC-42CB-99CE-EC13C17B574C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestAttemptProject.Common", "TestAttemptProject.Common\TestAttemptProject.Common.csproj", "{BE1F6B28-46FC-42CB-99CE-EC13C17B574C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestAttemptProject.DAL", "TestAttempProject.DAL\TestAttemptProject.DAL.csproj", "{22AB734E-F65E-48F3-B562-5E34547A818D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestAttemptProject.BLL", "TestAttempProject.BLL\TestAttemptProject.BLL.csproj", "{52BB7335-652A-4CBC-9180-061B963CCAEB}"
 	ProjectSection(ProjectDependencies) = postProject
 		{22AB734E-F65E-48F3-B562-5E34547A818D} = {22AB734E-F65E-48F3-B562-5E34547A818D}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{44DF43F5-F3BA-4D55-BB57-F064B75EF8DE}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
 	EndProjectSection
 EndProject
 Global

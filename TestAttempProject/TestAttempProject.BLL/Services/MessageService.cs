@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TestAttemptProject.BLL.Interfaces;
-using TestAttemptProject.Domain.DTO;
-using TestAttemptProject.Domain.Entities;
+using TestAttemptProject.Common.Exceptions;
+using TestAttemptProject.Common.DTO;
+using TestAttemptProject.Common.Entities;
 using TestAttemptProject.DAL.Interfaces;
-using TestAttemptProject.Domain.Exceptions;
 
 namespace TestAttemptProject.BLL.Services
 {
@@ -22,10 +22,11 @@ namespace TestAttemptProject.BLL.Services
             _mapper = mapper;
             _messageRepository = messageRepository;
         }
-        public async Task AddMessageToDbAsync(MessageCreateDTO messageDTO)
+        public async Task AddMessageToDbAsync(MessageCreateDTO messageDTO, User user)
         {
             Message message = _mapper.Map<Message>(messageDTO);
             message.DataStamp = DateTime.Now;
+            message.Author = user;
             await _messageRepository.AddAsync(message);
             await _messageRepository.SaveAsync();
         }
