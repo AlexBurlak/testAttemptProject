@@ -22,12 +22,16 @@ namespace TestAttemptProject.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly SignInManager<User> _signInManager; 
         private readonly IConfiguration _configuration;
         public AuthenticateController(UserManager<User> userManager,
-            RoleManager<IdentityRole> roleManager, IConfiguration configuration)
+            RoleManager<IdentityRole> roleManager, 
+            SignInManager<User> signInManager,
+            IConfiguration configuration)
         {
             _userManager = userManager;
             _roleManager = roleManager;
+            _signInManager = signInManager;
             _configuration = configuration;
         }
         [HttpPost]
@@ -37,31 +41,9 @@ namespace TestAttemptProject.Controllers
             var user = await _userManager.FindByNameAsync(model.Username);
             if(user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
-                var userRoles = await _userManager.GetRolesAsync(user);
+                await _signInManager.PasswordSignInAsync(user,model.Password,true,false);
 
-                var authClaims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Name, user.UserName),
-                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-                };
-
-                foreach(var userRole in userRoles)
-                {
-                    authClaims.Add(new Claim(ClaimTypes.Role, userRole));
-                }
-
-                var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
-                var token = new JwtSecurityToken(
-                    issuer: _configuration["JWT:ValidIssuer"],
-                    audience: _configuration["JWT:ValidAudience"],
-                    expires: DateTime.Now.AddHours(3),
-                    claims: authClaims,
-                    signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256));
-                return Ok(new
-                {
-                    token = new JwtSecurityTokenHandler().WriteToken(token),
-                    expiration = token.ValidTo.ToLocalTime()
-                });
+                return Ok();
             }
             return Unauthorized();
         }
@@ -82,10 +64,18 @@ namespace TestAttemptProject.Controllers
                 SecurityStamp = Guid.NewGuid().ToString()
             };
             var result = await _userManager.CreateAsync(user, model.Password);
+            
             if(!result.Succeeded)
             {
                 return Problem();
             }
+            if (!await _roleManager.RoleExistsAsync(UserRoles.User))
+            {
+                await _roleManager.CreateAsync(new IdentityRole(UserRoles.User));
+            }
+
+            await _userManager.AddToRoleAsync(user,UserRoles.User);
+            await _signInManager.SignInAsync(user, true);
             return Ok();
         }
 
@@ -109,10 +99,6 @@ namespace TestAttemptProject.Controllers
             {
                 return Problem();
             }
-            if(!await _roleManager.RoleExistsAsync(UserRoles.User))
-            {
-                await _roleManager.CreateAsync(new IdentityRole(UserRoles.User));
-            }
             if(!await _roleManager.RoleExistsAsync(UserRoles.Admin))
             {
                 await _roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
@@ -121,6 +107,15 @@ namespace TestAttemptProject.Controllers
             {
                 await _userManager.AddToRoleAsync(user, UserRoles.Admin);
             }
+
+            await _signInManager.SignInAsync(user, false);
+            return Ok();
+        }
+
+        [HttpPost("logout")]
+        public async Task<IActionResult> LogOut()
+        {
+            await _signInManager.SignOutAsync();
             return Ok();
         }
     }
