@@ -31,8 +31,8 @@
               "D:\\Projects\\TestAttemptProject\\TestAttempProject\\TestAttempProject.DAL\\TestAttemptProject.DAL.csproj": {
                 "projectPath": "D:\\Projects\\TestAttemptProject\\TestAttempProject\\TestAttempProject.DAL\\TestAttemptProject.DAL.csproj"
               },
-              "D:\\Projects\\TestAttemptProject\\TestAttempProject\\TestAttemptProject.Domain\\TestAttemptProject.Domain.csproj": {
-                "projectPath": "D:\\Projects\\TestAttemptProject\\TestAttempProject\\TestAttemptProject.Domain\\TestAttemptProject.Domain.csproj"
+              "D:\\Projects\\TestAttemptProject\\TestAttempProject\\TestAttemptProject.Common\\TestAttemptProject.Common.csproj": {
+                "projectPath": "D:\\Projects\\TestAttemptProject\\TestAttempProject\\TestAttemptProject.Common\\TestAttemptProject.Common.csproj"
               }
             }
           }
@@ -95,8 +95,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\Projects\\TestAttemptProject\\TestAttempProject\\TestAttemptProject.Domain\\TestAttemptProject.Domain.csproj": {
-                "projectPath": "D:\\Projects\\TestAttemptProject\\TestAttempProject\\TestAttemptProject.Domain\\TestAttemptProject.Domain.csproj"
+              "D:\\Projects\\TestAttemptProject\\TestAttempProject\\TestAttemptProject.Common\\TestAttemptProject.Common.csproj": {
+                "projectPath": "D:\\Projects\\TestAttemptProject\\TestAttempProject\\TestAttemptProject.Common\\TestAttemptProject.Common.csproj"
               }
             }
           }
@@ -111,6 +111,10 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.8, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.8, )"
@@ -145,14 +149,14 @@
         }
       }
     },
-    "D:\\Projects\\TestAttemptProject\\TestAttempProject\\TestAttemptProject.Domain\\TestAttemptProject.Domain.csproj": {
+    "D:\\Projects\\TestAttemptProject\\TestAttempProject\\TestAttemptProject.Common\\TestAttemptProject.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\TestAttemptProject\\TestAttempProject\\TestAttemptProject.Domain\\TestAttemptProject.Domain.csproj",
-        "projectName": "TestAttemptProject.Domain",
-        "projectPath": "D:\\Projects\\TestAttemptProject\\TestAttempProject\\TestAttemptProject.Domain\\TestAttemptProject.Domain.csproj",
+        "projectUniqueName": "D:\\Projects\\TestAttemptProject\\TestAttempProject\\TestAttemptProject.Common\\TestAttemptProject.Common.csproj",
+        "projectName": "TestAttemptProject.Common",
+        "projectPath": "D:\\Projects\\TestAttemptProject\\TestAttempProject\\TestAttemptProject.Common\\TestAttemptProject.Common.csproj",
         "packagesPath": "C:\\Users\\DikVernon\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\TestAttemptProject\\TestAttempProject\\TestAttemptProject.Domain\\obj\\",
+        "outputPath": "D:\\Projects\\TestAttemptProject\\TestAttempProject\\TestAttemptProject.Common\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\DikVernon\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -188,6 +192,10 @@
             "Microsoft.AspNetCore.Identity": {
               "target": "Package",
               "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.8, )"
             }
           },
           "imports": [

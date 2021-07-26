@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestAttemptProject.Domain.DTO
+namespace TestAttemptProject.Common.DTO
 {
-    public class MessageCreateDTO
+    public class MessageUpdateDTO
     {
-        public int AuthorId { get; set; }
         public string Content { get; set; }
     }
 }

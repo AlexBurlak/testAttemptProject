@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TestAttemptProject.DAL.Interfaces;
-using TestAttemptProject.Domain.Entities;
-using TestAttemptProject.Domain.Exceptions;
+using TestAttemptProject.Common.Entities;
+using TestAttemptProject.Common.Exceptions;
 using TestAttemptProject.DAL.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,8 +13,8 @@ namespace TestAttemptProject.DAL.Realization
 {
     public class MessageRepository : IMessageRepository
     {
-        private readonly TestAttemptDbContext _context;
-        public MessageRepository(TestAttemptDbContext context)
+        private readonly UserDbContext _context;
+        public MessageRepository(UserDbContext context)
         {
             _context = context;
         }
@@ -47,7 +47,7 @@ namespace TestAttemptProject.DAL.Realization
         {
             Message oldMessage = _context.Messages.Find(item);
             if(oldMessage == null) { throw new BaseException(); }
-            item.AuthorId = oldMessage.AuthorId;
+            item.Author = oldMessage.Author;
             item.DataStamp = oldMessage.DataStamp;
             _context.Entry(item).State = EntityState.Modified;
         }

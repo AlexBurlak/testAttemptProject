@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestAttemptProject.Domain.Entities
+namespace TestAttemptProject.Common.Entities
 {
     public static class UserRoles
     {

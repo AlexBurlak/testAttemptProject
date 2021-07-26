@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestAttemptProject.Domain.DTO
+namespace TestAttemptProject.Common.DTO
 {
     public class UserLoginDTO
     {

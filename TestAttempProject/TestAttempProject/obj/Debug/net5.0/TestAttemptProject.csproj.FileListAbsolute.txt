@@ -28,7 +28,6 @@ D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject\bin\Debug\net
 D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
 D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject\bin\Debug\net5.0\Microsoft.OpenApi.dll
-D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject\bin\Debug\net5.0\Newtonsoft.Json.dll
 D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -66,3 +65,13 @@ D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject\obj\Debug\net
 D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject\obj\Debug\net5.0\TestAttemptProject.genruntimeconfig.cache
 D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject\bin\Debug\net5.0\Humanizer.dll
 D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject\bin\Debug\net5.0\EntityFramework.SqlServer.dll
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject\bin\Debug\net5.0\EntityFramework.dll
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject\bin\Debug\net5.0\Microsoft.AspNet.Identity.Core.dll
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject\bin\Debug\net5.0\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject\bin\Debug\net5.0\Microsoft.Extensions.Identity.Core.dll
+D:\Projects\TestAttemptProject\TestAttempProject\TestAttempProject\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll

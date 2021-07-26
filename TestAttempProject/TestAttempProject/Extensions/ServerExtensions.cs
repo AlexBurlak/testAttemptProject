@@ -10,8 +10,8 @@ using TestAttemptProject.BLL.Services;
 using TestAttemptProject.DAL.Interfaces;
 using TestAttemptProject.DAL.Realization;
 
-using TestAttemptProject.Domain.Entities;
-using TestAttemptProject.Domain.DTO;
+using TestAttemptProject.Common.Entities;
+using TestAttemptProject.Common.DTO;
 
 using AutoMapper;
 
