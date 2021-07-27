@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using TestAttemptProject.BLL.Interfaces;
 using TestAttemptProject.Common.DTO;
 using TestAttemptProject.Common.Entities;
+using TestAttemptProject.Common.Exceptions;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -28,33 +29,84 @@ namespace TestAttemptProject.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<HTMLMessage>> Get()
+        public async Task<ActionResult<IEnumerable<HTMLMessage>>> GetAsync()
         {
-            return await _messageService.GetAllMessages(User.Identity.Name);
+            return Ok(await _messageService.GetAllMessages(User.Identity.Name));
         }
 
         [HttpGet("{id}")]
-        public async Task<HTMLMessage> Get(int id)
+        public async Task<ActionResult<HTMLMessage>> GetAsync(int id)
         {
-            return await _messageService.GetMessageAsync(id, User.Identity.Name);
+            try {
+                return Ok(await _messageService.GetMessageAsync(id, User.Identity.Name));
+            }
+            catch (AccesForbidenException ex)
+            {
+                return Forbid(ex.Message);
+            }
+            catch (MessageNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
 
         [HttpPost]
-        public async Task Post([FromBody] HTMLMessageCreateDTO messageDTO)
+        public async Task<ActionResult> PostAsync([FromBody] HTMLMessageCreateDTO messageDTO)
         {
-            await _messageService.AddMessageToDbAsync(messageDTO, User.Identity.Name);
+            try { 
+                await _messageService.AddMessageToDbAsync(messageDTO, User.Identity.Name);
+                return Created(nameof(GetAsync), messageDTO);
+            }
+            catch (HTMLMessageError ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (BaseException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPut]
-        public async Task Put([FromBody] HTMLMessageUpdateDTO messageDTO)
+        public async Task<ActionResult> PutAsync([FromBody] HTMLMessageUpdateDTO messageDTO)
         {
-            await _messageService.UpdateMessageAsync(messageDTO, User.Identity.Name);
+            try { 
+                await _messageService.UpdateMessageAsync(messageDTO, User.Identity.Name);
+                return Ok();
+            }
+            catch (HTMLMessageError ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (AccesForbidenException ex)
+            {
+                return Forbid(ex.Message);
+            }
+            catch (MessageNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (BaseException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpDelete("{id}")]
-        public async Task Delete(int id)
+        public async Task<ActionResult> DeleteAsync(int id)
         {
-            await _messageService.DeleteMessageAsync(id, User.Identity.Name);
+            try { 
+                await _messageService.DeleteMessageAsync(id, User.Identity.Name);
+                return Ok();
+            }
+            catch (AccesForbidenException ex)
+            {
+                return Forbid(ex.Message);
+            }
+            catch (MessageNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
     }
 }

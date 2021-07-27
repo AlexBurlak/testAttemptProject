@@ -29,7 +29,7 @@ namespace TestAttemptProject.DAL.Realization
             Message message = await _context.Messages.FindAsync(messageId);
             if(message == null)
             {
-                throw new BaseException($"There is no message with id {messageId} in database.");
+                throw new MessageNotFoundException($"There is no message with id {messageId} in database.");
             }
             _context.Messages.Remove(message);
             await _context.SaveChangesAsync();
@@ -37,7 +37,9 @@ namespace TestAttemptProject.DAL.Realization
 
         public async Task<Message> GetAsync(int id)
         {
-            return await _context.Messages.Include(m => m.Author).FirstOrDefaultAsync(m => m.Id == id);
+            var message = await _context.Messages.Include(m => m.Author).FirstOrDefaultAsync(m => m.Id == id);
+            if(message == null) { throw new MessageNotFoundException($"There is no message with id {id} in database."); }
+            return message;
         }
 
         public  IEnumerable<Message> GetAll()
@@ -48,7 +50,7 @@ namespace TestAttemptProject.DAL.Realization
         public async Task UpdateAsync(Message item)
         {
             Message message = _context.Messages.FirstOrDefault(ms => ms.Id == item.Id);
-            if(message == null) { throw new BaseException(); }
+            if(message == null) { throw new MessageNotFoundException($"There is no message with id {item.Id} in database."); }
             message.Content = item.Content;
             message.EditTime = item.EditTime;
             await _context.SaveChangesAsync();

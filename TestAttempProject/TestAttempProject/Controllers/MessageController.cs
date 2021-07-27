@@ -40,12 +40,16 @@ namespace TestAttemptProject.Controllers
         public async Task<ActionResult<Message>> GetAsync(int id)
         {
             try { 
-            var message = await _messageService.GetMessageAsync(id, User.Identity.Name);
-            return Ok(message);
+                var message = await _messageService.GetMessageAsync(id, User.Identity.Name);
+                return Ok(message);
             }
-            catch (BaseException ex)
+            catch (AccesForbidenException ex)
             {
-                return Forbid();
+                return Forbid(ex.Message);
+            }
+            catch (MessageNotFoundException ex)
+            {
+                return NotFound(ex.Message);
             }
         }
 
@@ -53,8 +57,14 @@ namespace TestAttemptProject.Controllers
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] MessageCreateDTO messageDTO)
         {
-            await _messageService.AddMessageToDbAsync(messageDTO, User.Identity.Name);
-            return Created(nameof(GetAsync), messageDTO);
+            try { 
+                await _messageService.AddMessageToDbAsync(messageDTO, User.Identity.Name);
+                return Created(nameof(GetAsync), messageDTO);
+            }
+            catch (BaseException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
 
@@ -65,9 +75,17 @@ namespace TestAttemptProject.Controllers
                 await _messageService.UpdateMessageAsync(messageDTO, User.Identity.Name);
                 return Ok();
             }
+            catch (AccesForbidenException ex)
+            {
+                return Forbid(ex.Message);
+            }
+            catch (MessageNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
             catch (BaseException ex)
             {
-                return Forbid();
+                return BadRequest(ex.Message);
             }
         }
 
@@ -79,9 +97,13 @@ namespace TestAttemptProject.Controllers
                 await _messageService.DeleteMessageAsync(id, User.Identity.Name);
                 return NoContent();
             }
-            catch(BaseException ex)
+            catch (AccesForbidenException ex)
             {
-                return Forbid();
+                return Forbid(ex.Message);
+            }
+            catch (MessageNotFoundException ex)
+            {
+                return NotFound(ex.Message);
             }
         }
         

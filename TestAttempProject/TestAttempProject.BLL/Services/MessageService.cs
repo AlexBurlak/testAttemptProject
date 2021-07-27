@@ -28,6 +28,10 @@ namespace TestAttemptProject.BLL.Services
         }
         public async Task AddMessageToDbAsync(MessageCreateDTO messageDTO, string userIdentityName)
         {
+            if(messageDTO.Content == null)
+            {
+                throw new BaseException("Message content can't be null");
+            }
             var user = await _userManager.FindByNameAsync(userIdentityName);
             Message message = _mapper.Map<Message>(messageDTO);
             message.Author = user;
@@ -53,18 +57,23 @@ namespace TestAttemptProject.BLL.Services
             bool isAdmin = await _userManager.IsInRoleAsync(user, UserRoles.Admin);
             if (!isAdmin && message.Author != user)
             {
-                throw new BaseException();
+                throw new AccesForbidenException("Only author can get this message!");
             }
             return message;
         }
 
         public async Task UpdateMessageAsync(MessageUpdateDTO messageDTO, string userIdentityName)
         {
+            if (messageDTO.Content == null)
+            {
+                throw new BaseException("Message content can't be null");
+            }
+
             var user = await _userManager.FindByNameAsync(userIdentityName);
             var author = (await _messageRepository.GetAsync(messageDTO.Id)).Author;
             if (author != user)
             {
-                throw new BaseException();
+                throw new AccesForbidenException("Only author can update this message!");
             }
             Message message = _mapper.Map<Message>(messageDTO);
             message.EditTime = DateTime.Now;
@@ -77,7 +86,7 @@ namespace TestAttemptProject.BLL.Services
             bool isAdmin = await _userManager.IsInRoleAsync(user, UserRoles.Admin);
             if (!isAdmin && message.Author != user)
             {
-                throw new BaseException();
+                throw new AccesForbidenException("Only author can delete this message!");
             }
             await _messageRepository.DeleteAsync(id);
         }
