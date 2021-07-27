@@ -36,13 +36,14 @@ namespace TestAttemptProject.Extensions
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<Message, MessageCreateDTO>()
-                .ReverseMap();
-                cfg.CreateMap<Message, MessageUpdateDTO>()
-                .ReverseMap();
-                cfg.CreateMap<HTMLMessage, HTMLMessageCreateDTO>()
-                .ReverseMap();
-                cfg.CreateMap<HTMLMessage, HTMLMessageCreateDTO>();
+                cfg.CreateMap<MessageCreateDTO, Message>()
+                .ForMember(h => h.CreationStamp, opt => opt.MapFrom(dto => DateTime.Now));
+                cfg.CreateMap<MessageUpdateDTO, Message>()
+                .ForMember(h => h.EditTime, opt => opt.MapFrom(dto => DateTime.Now));
+                cfg.CreateMap<HTMLMessageCreateDTO, HTMLMessage>()
+                .ForMember(h => h.DataStamp, opt => opt.MapFrom(dto => DateTime.Now));
+                cfg.CreateMap<HTMLMessageUpdateDTO, HTMLMessage>()
+                .ForMember(h => h.EditDate, opt => opt.MapFrom(dto => DateTime.Now));
             });
             return config;
         }

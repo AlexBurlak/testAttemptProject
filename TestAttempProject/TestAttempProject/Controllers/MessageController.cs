@@ -22,13 +22,10 @@ namespace TestAttemptProject.Controllers
     {
         private readonly IMessageService _messageService;
         private readonly UserManager<User> _userManager;
-        private readonly IHTMLMessageService _htmlMessageService;
         public MessageController(IMessageService messageService,
-            IHTMLMessageService hTMLMessageService,
             UserManager<User> userManager)
         {
             _messageService = messageService;
-            _htmlMessageService = hTMLMessageService;
             _userManager = userManager;
         }
         
@@ -60,23 +57,6 @@ namespace TestAttemptProject.Controllers
             return Created(nameof(GetAsync), messageDTO);
         }
 
-        [HttpPost("html")]
-        public async Task<IActionResult> PostHtml([FromBody] HTMLMessageCreateDTO messageCreateDto)
-        {
-            if (!CheckIsHtmlValid(messageCreateDto.Content))
-            {
-                return BadRequest();
-            }
-
-            await _htmlMessageService.AddMessageToDbAsync(messageCreateDto,
-                await _userManager.FindByNameAsync(User.Identity.Name));
-            return Ok();
-        }   
-        private bool CheckIsHtmlValid(string content)
-        {
-            Regex tagRegex = new Regex(@"<\s*([^ >]+)[^>]*>.*?<\s*/\s*\1\s*>");
-            return tagRegex.IsMatch(content);
-        }
 
         [HttpPut]
         public async Task<ActionResult> Put([FromBody] MessageUpdateDTO messageDTO)

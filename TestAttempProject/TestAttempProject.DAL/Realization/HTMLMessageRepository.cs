@@ -21,6 +21,7 @@ namespace TestAttemptProject.DAL.Realization
         public async Task AddAsync(HTMLMessage message)
         {
             await _context.HTMLMessages.AddAsync(message);
+            await _context.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(int messageId)
@@ -36,16 +37,16 @@ namespace TestAttemptProject.DAL.Realization
 
         public IEnumerable<HTMLMessage> GetAll()
         {
-            return _context.HTMLMessages;
+            return _context.HTMLMessages.Include(m => m.Author);
         }
 
         public async Task<HTMLMessage> GetAsync(int id)
         {
-            return await _context.HTMLMessages.FindAsync(id);
+            return await _context.HTMLMessages.Include(m => m.Author).FirstOrDefaultAsync(m => m.Id == id);
         }
         public async Task UpdateAsync(HTMLMessage item)
         {
-            HTMLMessage oldMessage = await _context.HTMLMessages.FindAsync(item);
+            HTMLMessage oldMessage = await _context.HTMLMessages.FindAsync(item.Id);
             if (oldMessage == null) { throw new BaseException(); }
             oldMessage.Content = item.Content;
             oldMessage.EditDate = item.EditDate;

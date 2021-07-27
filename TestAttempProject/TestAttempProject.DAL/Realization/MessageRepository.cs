@@ -37,12 +37,12 @@ namespace TestAttemptProject.DAL.Realization
 
         public async Task<Message> GetAsync(int id)
         {
-            return await _context.Messages.FindAsync(id);
+            return await _context.Messages.Include(m => m.Author).FirstOrDefaultAsync(m => m.Id == id);
         }
 
         public  IEnumerable<Message> GetAll()
         {
-            return _context.Messages;
+            return _context.Messages.Include(m => m.Author);
         }
 
         public async Task UpdateAsync(Message item)

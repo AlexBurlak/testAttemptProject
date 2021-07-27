@@ -10,10 +10,10 @@ namespace TestAttemptProject.BLL.Interfaces
 {
     public interface IHTMLMessageService
     {
-        public Task AddMessageToDbAsync(HTMLMessageCreateDTO message, User user);
-        public Task<HTMLMessageCreateDTO> GetMessageAsync(int id);
-        public IEnumerable<HTMLMessageCreateDTO> GetAllMessages();
-        public Task UpdateMessageAsync(HTMLMessageUpdateDTO message);
-        public Task DeleteMessageAsync(int id);
+        public Task AddMessageToDbAsync(HTMLMessageCreateDTO message, string userIdentityName);
+        public Task<HTMLMessage> GetMessageAsync(int id, string userIdentityName);
+        public Task<IEnumerable<HTMLMessage>> GetAllMessages(string userIdentityName);
+        public Task UpdateMessageAsync(HTMLMessageUpdateDTO message, string userIdentityName);
+        public Task DeleteMessageAsync(int id, string userIdentityName);
     }
 }

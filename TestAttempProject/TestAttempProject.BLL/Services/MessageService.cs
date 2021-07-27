@@ -18,14 +18,13 @@ namespace TestAttemptProject.BLL.Services
         private readonly IMapper _mapper;
         private readonly IMessageRepository _messageRepository;
         private readonly UserManager<User> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
         public MessageService(IMapper mapper,
             IMessageRepository messageRepository,
-            UserManager<User> userManager,
-            RoleManager<IdentityRole> roleManager)
+            UserManager<User> userManager)
         {
             _mapper = mapper;
             _messageRepository = messageRepository;
+            _userManager = userManager;
         }
         public async Task AddMessageToDbAsync(MessageCreateDTO messageDTO, string userIdentityName)
         {
