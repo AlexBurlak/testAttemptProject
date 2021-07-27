@@ -13,6 +13,7 @@ namespace TestAttemptProject.DAL.Context
     {
 
         public DbSet<Message> Messages { get; set; }
+        public DbSet<HTMLMessage> HTMLMessages { get; set; }
         public UserDbContext(DbContextOptions<UserDbContext> options)
             : base(options)
         { }
@@ -20,6 +21,9 @@ namespace TestAttemptProject.DAL.Context
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            builder.Entity<Message>()
+                .Property(m => m.CreationStamp)
+                .HasDefaultValueSql("getutcdate()");
         }
     }
 }

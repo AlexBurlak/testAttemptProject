@@ -11,8 +11,7 @@ namespace TestAttemptProject.DAL.Interfaces
         public IEnumerable<T> GetAll();
         public Task<T> GetAsync(int id);
         public Task AddAsync(T item);
-        public void Update(T item);
-        public void Delete(int itemId);
-        public Task SaveAsync();
+        public Task UpdateAsync(T item);
+        public Task DeleteAsync(int itemId);
     }
 }

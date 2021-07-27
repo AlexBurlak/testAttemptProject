@@ -21,8 +21,11 @@ namespace TestAttemptProject.Extensions
     {
         public static void AddMyServices(this IServiceCollection service)
         {
-            service.AddTransient<IMessageRepository, MessageRepository>();
-            service.AddTransient<IMessageService, MessageService>();
+            service.AddScoped<IMessageRepository, MessageRepository>();
+            service.AddScoped<IHTMLMessageRepository, HTMLMessageRepository>();
+            
+            service.AddScoped<IMessageService, MessageService>();
+            service.AddScoped<IHTMLMessageService, HTMLMessageService>();
 
             var mapperConfig = CreateMapperConfiguration();
             IMapper mapper = mapperConfig.CreateMapper();
@@ -37,6 +40,9 @@ namespace TestAttemptProject.Extensions
                 .ReverseMap();
                 cfg.CreateMap<Message, MessageUpdateDTO>()
                 .ReverseMap();
+                cfg.CreateMap<HTMLMessage, HTMLMessageCreateDTO>()
+                .ReverseMap();
+                cfg.CreateMap<HTMLMessage, HTMLMessageCreateDTO>();
             });
             return config;
         }

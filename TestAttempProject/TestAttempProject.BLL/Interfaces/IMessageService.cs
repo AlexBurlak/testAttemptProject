@@ -10,10 +10,10 @@ namespace TestAttemptProject.BLL.Interfaces
 {
     public interface IMessageService
     {
-        public Task AddMessageToDbAsync(MessageCreateDTO message, User user);
-        public Task<Message> GetMessageAsync(int id);
-        public IEnumerable<Message> GetAllMessages();
-        public Task UpdateMessageAsync(int id, MessageUpdateDTO message);
-        public Task DeleteMessageAsync(int id);
+        public Task AddMessageToDbAsync(MessageCreateDTO message, string userIdentityName);
+        public Task<Message> GetMessageAsync(int id, string userIdentityName);
+        public Task<IEnumerable<Message>> GetAllMessages(string userIdentityName);
+        public Task UpdateMessageAsync(MessageUpdateDTO message, string userIdentityName);
+        public Task DeleteMessageAsync(int id, string userIdentityName);
     }
 }

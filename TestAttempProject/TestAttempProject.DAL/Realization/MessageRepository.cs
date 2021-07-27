@@ -21,16 +21,18 @@ namespace TestAttemptProject.DAL.Realization
         public async Task AddAsync(Message item)
         {
             await _context.Messages.AddAsync(item);
+            await _context.SaveChangesAsync();
         }
 
-        public void Delete(int messageId)
+        public async Task DeleteAsync(int messageId)
         {
-            Message message = _context.Messages.Find(messageId);
+            Message message = await _context.Messages.FindAsync(messageId);
             if(message == null)
             {
                 throw new BaseException($"There is no message with id {messageId} in database.");
             }
             _context.Messages.Remove(message);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<Message> GetAsync(int id)
@@ -43,17 +45,12 @@ namespace TestAttemptProject.DAL.Realization
             return _context.Messages;
         }
 
-        public void Update(Message item)
+        public async Task UpdateAsync(Message item)
         {
-            Message oldMessage = _context.Messages.Find(item);
-            if(oldMessage == null) { throw new BaseException(); }
-            item.Author = oldMessage.Author;
-            item.DataStamp = oldMessage.DataStamp;
-            _context.Entry(item).State = EntityState.Modified;
-        }
-
-        public async Task SaveAsync()
-        {
+            Message message = _context.Messages.FirstOrDefault(ms => ms.Id == item.Id);
+            if(message == null) { throw new BaseException(); }
+            message.Content = item.Content;
+            message.EditTime = item.EditTime;
             await _context.SaveChangesAsync();
         }
     }

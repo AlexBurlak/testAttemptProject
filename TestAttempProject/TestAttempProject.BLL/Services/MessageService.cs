@@ -9,6 +9,7 @@ using TestAttemptProject.Common.Exceptions;
 using TestAttemptProject.Common.DTO;
 using TestAttemptProject.Common.Entities;
 using TestAttemptProject.DAL.Interfaces;
+using Microsoft.AspNetCore.Identity;
 
 namespace TestAttemptProject.BLL.Services
 {
@@ -16,42 +17,70 @@ namespace TestAttemptProject.BLL.Services
     {
         private readonly IMapper _mapper;
         private readonly IMessageRepository _messageRepository;
+        private readonly UserManager<User> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         public MessageService(IMapper mapper,
-            IMessageRepository messageRepository)
+            IMessageRepository messageRepository,
+            UserManager<User> userManager,
+            RoleManager<IdentityRole> roleManager)
         {
             _mapper = mapper;
             _messageRepository = messageRepository;
         }
-        public async Task AddMessageToDbAsync(MessageCreateDTO messageDTO, User user)
+        public async Task AddMessageToDbAsync(MessageCreateDTO messageDTO, string userIdentityName)
         {
+            var user = await _userManager.FindByNameAsync(userIdentityName);
             Message message = _mapper.Map<Message>(messageDTO);
-            message.DataStamp = DateTime.Now;
             message.Author = user;
             await _messageRepository.AddAsync(message);
-            await _messageRepository.SaveAsync();
         }
 
-        public IEnumerable<Message> GetAllMessages()
+        public async Task<IEnumerable<Message>> GetAllMessages(string userIdentityName)
         {
-            return _messageRepository.GetAll();
+            var messagesCollection = _messageRepository.GetAll();
+            User user = await _userManager.FindByNameAsync(userIdentityName);
+            bool isAdmin = await _userManager.IsInRoleAsync(user, UserRoles.Admin);
+            if (!isAdmin)
+            {
+                messagesCollection = messagesCollection.Where(m => m.Author == user);
+            }
+            return messagesCollection;
         }
 
-        public async Task<Message> GetMessageAsync(int id)
+        public async Task<Message> GetMessageAsync(int id, string userIdentityName)
         {
-            return await _messageRepository.GetAsync(id);
+            var message = await _messageRepository.GetAsync(id);
+            User user = await _userManager.FindByNameAsync(userIdentityName);
+            bool isAdmin = await _userManager.IsInRoleAsync(user, UserRoles.Admin);
+            if (!isAdmin && message.Author != user)
+            {
+                throw new BaseException();
+            }
+            return message;
         }
 
-        public async Task UpdateMessageAsync(int id, MessageUpdateDTO messageDTO)
+        public async Task UpdateMessageAsync(MessageUpdateDTO messageDTO, string userIdentityName)
         {
+            var user = await _userManager.FindByNameAsync(userIdentityName);
+            var author = (await _messageRepository.GetAsync(messageDTO.Id)).Author;
+            if (author != user)
+            {
+                throw new BaseException();
+            }
             Message message = _mapper.Map<Message>(messageDTO);
-            message.Id = id;
-            _messageRepository.Update(message);
-            await _messageRepository.SaveAsync();
+            message.EditTime = DateTime.Now;
+            await _messageRepository.UpdateAsync(message);
         }
-        public async Task DeleteMessageAsync(int id)
+        public async Task DeleteMessageAsync(int id, string userIdentityName)
         {
-            _messageRepository.Delete(id);
-            await _messageRepository.SaveAsync();
+            var message = await _messageRepository.GetAsync(id);
+            User user = await _userManager.FindByNameAsync(userIdentityName);
+            bool isAdmin = await _userManager.IsInRoleAsync(user, UserRoles.Admin);
+            if (!isAdmin && message.Author != user)
+            {
+                throw new BaseException();
+            }
+            await _messageRepository.DeleteAsync(id);
         }
     }
 }

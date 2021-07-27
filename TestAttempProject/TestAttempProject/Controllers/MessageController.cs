@@ -9,6 +9,8 @@ using TestAttemptProject.Common.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
+using TestAttemptProject.Common.Exceptions;
+using System.Text.RegularExpressions;
 
 namespace TestAttemptProject.Controllers
 {
@@ -20,71 +22,87 @@ namespace TestAttemptProject.Controllers
     {
         private readonly IMessageService _messageService;
         private readonly UserManager<User> _userManager;
+        private readonly IHTMLMessageService _htmlMessageService;
         public MessageController(IMessageService messageService,
+            IHTMLMessageService hTMLMessageService,
             UserManager<User> userManager)
         {
             _messageService = messageService;
+            _htmlMessageService = hTMLMessageService;
             _userManager = userManager;
         }
         
         [HttpGet]
         public  async Task<ActionResult<IEnumerable<Message>>> GetAll()
         {
-            IEnumerable<Message> messagesCollection = _messageService.GetAllMessages();
-            User user = await _userManager.FindByNameAsync(User.Identity.Name);
-            bool isAdmin = await _userManager.IsInRoleAsync(user, UserRoles.Admin);
-            if(!isAdmin)
-            {
-                messagesCollection = messagesCollection.Where(m => m.Author == user);
-            }
+            IEnumerable<Message> messagesCollection = await _messageService.GetAllMessages(User.Identity.Name);
             return  Ok(messagesCollection);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Message>> GetAsync(int id)
         {
-            var message = await _messageService.GetMessageAsync(id);
-            User user = await _userManager.FindByNameAsync(User.Identity.Name);
-            bool isAdmin = await _userManager.IsInRoleAsync(user, UserRoles.Admin);
-            if(!isAdmin && message.Author != user)
+            try { 
+            var message = await _messageService.GetMessageAsync(id, User.Identity.Name);
+            return Ok(message);
+            }
+            catch (BaseException ex)
             {
                 return Forbid();
             }
-            return Ok(message);
         }
 
         
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] MessageCreateDTO messageDTO)
         {
-            await _messageService.AddMessageToDbAsync(messageDTO, await _userManager.FindByNameAsync(User.Identity.Name));
+            await _messageService.AddMessageToDbAsync(messageDTO, User.Identity.Name);
             return Created(nameof(GetAsync), messageDTO);
         }
 
-        [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, [FromBody] MessageUpdateDTO messageDTO)
+        [HttpPost("html")]
+        public async Task<IActionResult> PostHtml([FromBody] HTMLMessageCreateDTO messageCreateDto)
         {
-            if ((await _messageService.GetMessageAsync(id)).Author !=
-                (await _userManager.FindByNameAsync(User.Identity.Name)))
+            if (!CheckIsHtmlValid(messageCreateDto.Content))
+            {
+                return BadRequest();
+            }
+
+            await _htmlMessageService.AddMessageToDbAsync(messageCreateDto,
+                await _userManager.FindByNameAsync(User.Identity.Name));
+            return Ok();
+        }   
+        private bool CheckIsHtmlValid(string content)
+        {
+            Regex tagRegex = new Regex(@"<\s*([^ >]+)[^>]*>.*?<\s*/\s*\1\s*>");
+            return tagRegex.IsMatch(content);
+        }
+
+        [HttpPut]
+        public async Task<ActionResult> Put([FromBody] MessageUpdateDTO messageDTO)
+        {
+            try { 
+                await _messageService.UpdateMessageAsync(messageDTO, User.Identity.Name);
+                return Ok();
+            }
+            catch (BaseException ex)
             {
                 return Forbid();
             }
-            await _messageService.UpdateMessageAsync(id, messageDTO);
-            return Ok();
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var message = await _messageService.GetMessageAsync(id);
-            User user = await _userManager.FindByNameAsync(User.Identity.Name);
-            bool isAdmin = await _userManager.IsInRoleAsync(user, UserRoles.Admin);
-            if(!isAdmin && message.Author != user)
+            try 
+            {    
+                await _messageService.DeleteMessageAsync(id, User.Identity.Name);
+                return NoContent();
+            }
+            catch(BaseException ex)
             {
                 return Forbid();
             }
-            await _messageService.DeleteMessageAsync(id);
-            return NoContent();
         }
         
     }

@@ -4,14 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestAttemptProject.Common.Entities
+namespace TestAttemptProject.Common.DTO
 {
-    public class Message
+    public class HTMLMessageUpdateDTO
     {
         public int Id { get; set; }
-        public User Author { get; set; }
         public string Content { get; set; }
-        public DateTime CreationStamp { get; set; }
-        public DateTime? EditTime { get; set; }
     }
 }

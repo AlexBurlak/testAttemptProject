@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace TestAttemptProject.Common.DTO
 {
-    public class MessageUpdateDTO
+    public class HTMLMessageCreateDTO
     {
-        public int Id { get; set; }
         public string Content { get; set; }
     }
 }

@@ -7,7 +7,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -34,8 +33,7 @@ namespace TestAttemptProject
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<UserDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("LocalDb"),
-                b => b.MigrationsAssembly("TestAttemptProject")));
+                options.UseSqlServer(Configuration.GetConnectionString("LocalDb")));
             services.AddIdentity<User, IdentityRole>(options =>
                 {
                     options.SignIn.RequireConfirmedAccount = false;
