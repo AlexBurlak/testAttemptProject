@@ -8,7 +8,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestAttemptProject", "TestA
 		{52BB7335-652A-4CBC-9180-061B963CCAEB} = {52BB7335-652A-4CBC-9180-061B963CCAEB}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeastAttemptProject.Tests", "TeastAttemptProject.Tests\TeastAttemptProject.Tests.csproj", "{71169F51-F3D1-4919-A858-B50656438CA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestAttemptProject.Tests", "TeastAttemptProject.Tests\TestAttemptProject.Tests.csproj", "{71169F51-F3D1-4919-A858-B50656438CA4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestAttemptProject.Common", "TestAttemptProject.Common\TestAttemptProject.Common.csproj", "{BE1F6B28-46FC-42CB-99CE-EC13C17B574C}"
 EndProject

@@ -37,7 +37,7 @@ namespace TestAttemptProject.BLL.Services
             var user = await _userManager.FindByNameAsync(userIdentityName);
 
             HTMLMessage htmlMessage = _mapper.Map<HTMLMessage>(message);
-            if (!IsTextHtml(htmlMessage.Content)) throw new HTMLMessageError("Text doesn't contain any html tag. Use message controller instead htmlmessage.");
+            if (!IsTextHtml(htmlMessage.Content)) throw new HTMLMessageException("Text doesn't contain any html tag. Use message controller instead htmlmessage.");
             htmlMessage.Author = user;
             htmlMessage.DataStamp = DateTime.Now;
             await _htmlMessageRepository.AddAsync(htmlMessage);
@@ -105,7 +105,7 @@ namespace TestAttemptProject.BLL.Services
             if (!isAdmin && oldMessage.Author != user) throw new AccesForbidenException("Only author can update this message!");
 
             HTMLMessage updatedMessage = _mapper.Map<HTMLMessage>(message);
-            if (!IsTextHtml(updatedMessage.Content)) throw new HTMLMessageError("Text doesn't contain any html tag. Use message controller instead htmlmessage.");
+            if (!IsTextHtml(updatedMessage.Content)) throw new HTMLMessageException("Text doesn't contain any html tag. Use message controller instead htmlmessage.");
             updatedMessage.EditDate = DateTime.Now;
 
             await _htmlMessageRepository.UpdateAsync(updatedMessage);

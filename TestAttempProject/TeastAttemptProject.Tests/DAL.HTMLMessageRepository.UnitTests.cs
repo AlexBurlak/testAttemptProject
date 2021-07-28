@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Xunit;
 using FakeItEasy;
 using TestAttemptProject.DAL.Context;
@@ -14,10 +14,10 @@ using System.Threading.Tasks;
 
 namespace TeastAttemptProject.Tests
 {
-    public class DAL_MessageRepository_UnitTests : IDisposable
+    public class DAL_HTMLMessageRepository_UnitTests : IDisposable
     {
         private readonly UserDbContext _userDbContext;
-        private readonly IMessageRepository _messageRepository;
+        private readonly IHTMLMessageRepository _messageRepository;
         public void Dispose()
         {
             _userDbContext.Dispose();
@@ -26,40 +26,40 @@ namespace TeastAttemptProject.Tests
         {
             _userDbContext.Database.EnsureDeleted();
             _userDbContext.Database.EnsureCreated();
-            var one = new Message
+            var one = new HTMLMessage
             {
                 Id = 1,
-                Content = "Hello world",
+                Content = "<a>Hello</a> world",
                 Author = new User(),
-                CreationStamp = new DateTime(2000, 01, 01)
+                DataStamp = new DateTime(2000, 01, 01)
             };
-            var two = new Message
+            var two = new HTMLMessage
             {
                 Id = 2,
-                Content = "Goodnight =)",
+                Content = "<i>G</i>oodnight =)",
                 Author = new User(),
-                CreationStamp = new DateTime(2001, 01, 01)
+                DataStamp = new DateTime(2001, 01, 01)
             };
-            _userDbContext.Messages.AddRange(one, two);
+            _userDbContext.HTMLMessages.AddRange(one, two);
             _userDbContext.SaveChanges();
         }
-        public DAL_MessageRepository_UnitTests()
+        public DAL_HTMLMessageRepository_UnitTests()
         {
             var userDbOptions = new DbContextOptionsBuilder<UserDbContext>()
-                .UseInMemoryDatabase(databaseName: $"{nameof(DAL_MessageRepository_UnitTests)}.{Guid.NewGuid()}")
+                .UseInMemoryDatabase(databaseName: $"{nameof(DAL_HTMLMessageRepository_UnitTests)}.{Guid.NewGuid()}")
                 .Options;
             _userDbContext = new UserDbContext(userDbOptions);
-           
+
             Seed();
 
-            _messageRepository = new MessageRepository(_userDbContext);
-           
+            _messageRepository = new HTMLMessageRepository(_userDbContext);
+
         }
         [Fact]
         public void GetAll_WhenDatabaseContainsTwoRecords_ThenGetEnumerableWithTwoRecords()
         {
             //Arange
-            IEnumerable<Message> messages;
+            IEnumerable<HTMLMessage> messages;
             //Act
             messages = _messageRepository.GetAll();
             //Assert
@@ -70,15 +70,15 @@ namespace TeastAttemptProject.Tests
         public void GetAsync_When1RecordExists_ThenGetRecordWithId1()
         {
             //Arange
-            Message message;
+            HTMLMessage message;
             //Act
             message = _messageRepository.GetAsync(1).Result;
             //Assert
             Assert.Equal(1, message.Id);
-            Assert.Equal("Hello world", message.Content);
-            Assert.Equal(new DateTime(2000, 01, 01), message.CreationStamp);
+            Assert.Equal("<a>Hello</a> world", message.Content);
+            Assert.Equal(new DateTime(2000, 01, 01), message.DataStamp);
         }
-        
+
         [Fact]
         public async Task GetAsync_WhenRecordDoesntExists_ThenThrowException()
         {
@@ -88,32 +88,33 @@ namespace TeastAttemptProject.Tests
             await Assert.ThrowsAsync<MessageNotFoundException>(async () => await _messageRepository.GetAsync(100));
         }
         [Fact]
-        public async Task UpdateAsync_WhenRecordIdExists_ThenUpdateRecord()
+        public void UpdateAsync_WhenRecordIdExists_ThenUpdateRecord()
         {
             //Arange
-            Message message = new Message { Id = 1, Content = "I like pizza", Author = new User() };
+            HTMLMessage message = new HTMLMessage { Id = 1, Content = "<b>I like</b> <i>pizza</i>"};
             //Act
-            await _messageRepository.UpdateAsync(message);
-            var result = await _messageRepository.GetAsync(message.Id);
+            _messageRepository.UpdateAsync(message).Wait();
+            var result = _messageRepository.GetAsync(message.Id).Result;
             //Assert
             Assert.Equal(1, result.Id);
-            Assert.Equal("I like pizza", result.Content);
+            Assert.Equal("<b>I like</b> <i>pizza</i>", result.Content);
         }
         [Fact]
         public async Task UpdateAsync_WhenRecordIdDoesntExists_ThenGetException()
         {
             //Arange
-            Message message = new Message { Id = 100, Content = "I like pizza", Author = new User()};
+            HTMLMessage message = new HTMLMessage { Id = 100, Content = "<b>I like</b> <i>pizza</i>"};
             //Act - Assert
             await Assert.ThrowsAsync<MessageNotFoundException>(async () => await _messageRepository.UpdateAsync(message));
         }
         [Fact]
-        public async Task DeleteAsync_WhenRecordIdExists_ThenRecordDeletes()
+        public void DeleteAsync_WhenRecordIdExists_ThenRecordDeletes()
         {
+            _userDbContext.Database.EnsureCreated();
             //Arange
             int messageId = 1;
             //Act
-            await _messageRepository.DeleteAsync(messageId);
+            _messageRepository.DeleteAsync(messageId).Wait();
             var messages = _messageRepository.GetAll();
             //Assert
             Assert.Null(messages.FirstOrDefault(m => m.Id == messageId));
@@ -130,14 +131,13 @@ namespace TeastAttemptProject.Tests
         public void AddAsync_WhenRecordIsUntracked_ThenRecordCreated()
         {
             //Arange
-            Message message = new Message { Content = "Ok(", Author = new User() };
+            HTMLMessage message = new HTMLMessage { Content = "<h3>Ok(</h3>", Author = new User() };
             //Act 
             _messageRepository.AddAsync(message).Wait();
-            var result = _messageRepository.GetAll().FirstOrDefault(msg => msg.Content == "Ok(");
+            var result = _messageRepository.GetAll().FirstOrDefault(msg => msg.Id == 3);
             //Assert
             Assert.NotNull(result);
-            Assert.Equal(3, result.Id);
+            Assert.Equal("<h3>Ok(</h3>", result.Content);
         }
-
     }
 }

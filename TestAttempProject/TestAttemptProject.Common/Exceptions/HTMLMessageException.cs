@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace TestAttemptProject.Common.Exceptions
 {
-    public class HTMLMessageError : Exception
+    public class HTMLMessageException : Exception
     {
-        public HTMLMessageError()
+        public HTMLMessageException()
             : base()
         {
 
         }
-        public HTMLMessageError(string message)
+        public HTMLMessageException(string message)
             : base(message)
         { }
 
-        public HTMLMessageError(string message, Exception inner)
+        public HTMLMessageException(string message, Exception inner)
             : base(message, inner)
         { }
     }

@@ -57,7 +57,7 @@ namespace TestAttemptProject.Controllers
                 await _messageService.AddMessageToDbAsync(messageDTO, User.Identity.Name);
                 return Created(nameof(GetAsync), messageDTO);
             }
-            catch (HTMLMessageError ex)
+            catch (HTMLMessageException ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -74,7 +74,7 @@ namespace TestAttemptProject.Controllers
                 await _messageService.UpdateMessageAsync(messageDTO, User.Identity.Name);
                 return Ok();
             }
-            catch (HTMLMessageError ex)
+            catch (HTMLMessageException ex)
             {
                 return BadRequest(ex.Message);
             }
